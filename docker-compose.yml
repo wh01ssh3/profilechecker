@@ -1,0 +1,21 @@
+version: '2'
+services:
+  postgres:
+    image: mdillon/postgis
+    environment:
+    - POSTGRES_DB=profilechecker
+    - POSTGRES_USER=profilechecker
+    - POSTGRES_PASSWORD=profilechecker
+    ports:
+    - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+      args:
+        APP_ENV: local
+    ports:
+    - "8000:8000"
+    volumes:
+    - .:/home/app/
