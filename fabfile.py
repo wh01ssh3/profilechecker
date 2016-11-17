@@ -15,3 +15,8 @@ def compiledeps(env='local'):
     """Compile *.in files into requirements.txt"""
     local('pip-compile --output-file requirements/{env}.txt '
           'requirements/common.in requirements/{env}.in'.format(env=env))
+
+
+def sync(env='local'):
+    """Compile *.in files into requirements.txt"""
+    local('pip-sync requirements/{env}.txt'.format(env=env))
