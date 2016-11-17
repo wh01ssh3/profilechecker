@@ -20,7 +20,7 @@ class PeriodicTaskTestCase(SimpleTestCase):
     """Test case for ``PeriodicTask``"""
 
     def setUp(self):
-        self.task = PeriodicTaskFactory()
+        self.task = PeriodicTaskFactory.build()
 
     def test_str(self):
         """Ensure that periodic task ``__str__`` method returns ``title``
