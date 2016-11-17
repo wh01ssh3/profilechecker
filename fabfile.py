@@ -3,8 +3,7 @@ from fabric.api import local
 
 def startapp():
     """Create app from cookiecutter template"""
-    local('cookiecutter https://github.com/singleton11/sdjat -o '
-          'profilechecker/apps')
+    local('cookiecutter https://github.com/singleton11/sdjat -o apps')
 
 
 def startdb():
