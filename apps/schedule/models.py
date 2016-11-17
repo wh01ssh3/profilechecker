@@ -39,7 +39,7 @@ class Task(TitleDescriptionModel):
 
         rules |= self.rules.all()
 
-        return rules
+        return rules.distinct()
 
     class Meta:
         abstract = True
