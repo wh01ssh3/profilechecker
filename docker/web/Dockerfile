@@ -13,6 +13,6 @@ WORKDIR /home/app
 
 COPY requirements /home/app/requirements
 
-RUN /bin/sh -c 'pip3 install -r requirements/${APP_ENV}.txt'
+RUN /bin/sh -c 'pip3 install -r requirements/local.txt'
 
 CMD python3 profilechecker/manage.py runserver_plus 0.0.0.0:8000

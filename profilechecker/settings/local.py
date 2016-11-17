@@ -1,4 +1,4 @@
-from .base import *
+from .common import *
 
 DATABASES = {
     'default': {
@@ -10,5 +10,3 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-INSTALLED_APPS += ['django_extensions']

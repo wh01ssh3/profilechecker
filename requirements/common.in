@@ -1,0 +1,7 @@
+django
+psycopg2
+django-extensions
+django-codemirror2
+factory-boy
+pytz
+tblib

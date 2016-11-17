@@ -1,0 +1,32 @@
+{# TODO: make 'PASSED' test green and 'NOT PASSED' red (add staticfiles to project) #}
+
+{% extends "admin/change_form.html" %}
+
+{% block field_sets %}
+  <table id="result_list">
+    <thead>
+    <th scope="col" class="sortable column-id">
+      <div class="text">Rule</div>
+      <div class="clear"></div>
+    </th>
+    <th scope="col" class="sortable column-id">
+      <div class="text">Passed</div>
+      <div class="clear"></div>
+    </th>
+    </thead>
+    <tbody>
+    {% for rule in original.task.get_all_rules %}
+      <tr>
+        <td>{{ rule }}</td>
+        <td>
+          {% if rule in original.passed_rules.all %}
+            PASSED
+          {% else %}
+            NOT PASSED
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
