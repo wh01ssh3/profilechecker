@@ -21,7 +21,7 @@ class OneTimeTaskViewSetTestCase(APITestCase):
 
 
 class PeriodicTaskViewSetTestCase(APITestCase):
-    """Test case for ``OneTimeTaskViewSet``"""
+    """Test case for ``PeriodicTaskViewSet``"""
 
     def setUp(self):
         self.task = PeriodicTaskFactory()
