@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-urlpatterns = [
+urlpatterns = (
     url(r'^', admin.site.urls),
-]
+)
