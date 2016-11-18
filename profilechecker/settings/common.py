@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'codemirror2',
+    'rest_framework',
 
     'apps.rules.apps.RulesConfig',
     'apps.schedule.apps.ScheduleConfig',
