@@ -14,7 +14,7 @@ class RuleSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     """Serializer for ``Profile``"""
 
-    rules = RuleSerializer(many=True, read_only=True)
+    rules = RuleSerializer(many=True)
 
     class Meta:
         model = Profile
