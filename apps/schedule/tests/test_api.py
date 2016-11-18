@@ -17,7 +17,6 @@ class OneTimeTaskViewSetTestCase(APITestCase):
         """Ensure that user can see only his tasks"""
         resp = self.client.get(self.url)
         self.assertEqual(len(resp.data), 1)
-        self.assertEqual(resp.data[0]['user'], self.task.user_id)
 
 
 class PeriodicTaskViewSetTestCase(APITestCase):
@@ -34,4 +33,3 @@ class PeriodicTaskViewSetTestCase(APITestCase):
         """Ensure that user can see only his tasks"""
         resp = self.client.get(self.url)
         self.assertEqual(len(resp.data), 1)
-        self.assertEqual(resp.data[0]['user'], self.task.user_id)
