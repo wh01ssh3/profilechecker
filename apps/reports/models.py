@@ -20,9 +20,9 @@ class Report(TimeStampedModel):
 
 class OneTimeReport(Report):
     """Model for storing reports for one time tasks"""
-    task = models.ForeignKey('schedule.OneTimeTask')
+    task = models.ForeignKey('schedule.OneTimeTask', related_name='reports')
 
 
 class PeriodicReport(Report):
     """Model for storing reports for periodic tasks"""
-    task = models.ForeignKey('schedule.PeriodicTask')
+    task = models.ForeignKey('schedule.PeriodicTask', related_name='reports')
