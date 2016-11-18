@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'codemirror2',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
 
     'apps.rules.apps.RulesConfig',
     'apps.schedule.apps.ScheduleConfig',

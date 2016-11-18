@@ -6,3 +6,4 @@ factory-boy
 pytz
 tblib
 djangorestframework
+django-rest-auth
