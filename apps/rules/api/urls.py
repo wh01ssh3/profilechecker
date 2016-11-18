@@ -1,8 +1,9 @@
 from rest_framework.routers import DefaultRouter
 
-from apps.rules.api.views import RuleViewSet
+from .views import ProfileViewSet, RuleViewSet
 
 router = DefaultRouter()
 router.register('rules', RuleViewSet)
+router.register('profiles', ProfileViewSet)
 
 urlpatterns = router.urls
