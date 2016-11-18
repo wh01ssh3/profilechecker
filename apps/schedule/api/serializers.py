@@ -15,7 +15,7 @@ class OneTimeTaskSerializer(TaskSerializer):
 
     class Meta:
         model = OneTimeTask
-        fields = '__all__'
+        exclude = ('user',)
 
 
 class PeriodicTaskSerializer(TaskSerializer):
@@ -23,4 +23,4 @@ class PeriodicTaskSerializer(TaskSerializer):
 
     class Meta:
         model = PeriodicTask
-        fields = '__all__'
+        exclude = ('user',)
