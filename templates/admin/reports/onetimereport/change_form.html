@@ -1,5 +1,8 @@
 {% extends "admin/change_form.html" %}
-
+{% load static %}
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
 {% block field_sets %}
   <table id="result_list">
     <thead>
@@ -18,9 +21,9 @@
         <td>{{ rule }}</td>
         <td>
           {% if rule in original.passed_rules.all %}
-            PASSED
+            <p class="success">PASSED</p>
           {% else %}
-            NOT PASSED
+            <p class="fail">NOT PASSED</p>
           {% endif %}
         </td>
       </tr>
