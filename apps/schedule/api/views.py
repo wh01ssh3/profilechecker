@@ -6,5 +6,9 @@ from ..models import OneTimeTask
 
 class OneTimeTaskViewSet(viewsets.ReadOnlyModelViewSet):
     """ViewSet for ``OneTimeTask``"""
-    queryset = OneTimeTask.objects.all()
+
+    def get_queryset(self):
+        """User should be able to see only his tasks"""
+        return OneTimeTask.objects.filter(user=self.request.user)
+
     serializer_class = OneTimeTaskSerializer
