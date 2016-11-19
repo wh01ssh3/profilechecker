@@ -29,3 +29,7 @@ class ReportAdminTestCase(TestCase):
         """Ensure that total_rules_count executes ``get_all_rules`` method"""
         self.assertEqual(self.admin.total_rules_count(self.report),
                          self.report.task.get_all_rules().count())
+
+    def test_cant_add_report(self):
+        """Ensure that reports can't be added through admin"""
+        self.assertFalse(self.admin.has_add_permission(None))

@@ -20,3 +20,10 @@ def compiledeps(env='local'):
 def sync(env='local'):
     """Compile *.in files into requirements.txt"""
     local('pip-sync requirements/{env}.txt'.format(env=env))
+
+
+def coverage():
+    """Open test coverage in browser"""
+    local('coverage run manage.py test --keepdb --failfast')
+    local('coverage html')
+    local('xdg-open htmlcov/index.html & sleep 3')
