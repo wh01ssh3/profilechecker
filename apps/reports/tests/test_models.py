@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from apps.reports.factories import OneTimeReportFactory
+from ..factories import OneTimeReportFactory
 
 
 class ReportTestCase(TestCase):
