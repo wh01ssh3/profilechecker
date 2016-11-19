@@ -3,10 +3,9 @@ from rest_framework import mixins
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import GenericViewSet
 
-from apps.schedule.models import PeriodicTask
 from .serializers import OneTimeReportSerializer, PeriodicReportSerializer
 from ..models import OneTimeReport, PeriodicReport
-from ...schedule.models import OneTimeTask
+from ...schedule.models import OneTimeTask, PeriodicTask
 
 
 class OneTimeReportViewSet(mixins.CreateModelMixin,
