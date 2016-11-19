@@ -4,6 +4,7 @@
 #
 #    pip-compile --output-file requirements/local.txt requirements/common.in requirements/local.in
 #
+coverage==4.2
 decorator==4.0.10         # via ipython, traitlets
 django-codemirror2==0.2
 django-extensions==1.7.4

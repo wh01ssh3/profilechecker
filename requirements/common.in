@@ -7,3 +7,4 @@ pytz
 tblib
 djangorestframework
 django-rest-auth
+coverage

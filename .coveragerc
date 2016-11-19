@@ -1,0 +1,4 @@
+[run]
+branch = True
+parallel = True
+omit = *lib*,*migrations*,*__init__.py,manage.py,*tests*,*factories*
