@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from ..factories import OneTimeReportFactory
+from ..factories import OneTimeReportFactory, PeriodicReportFactory
 from ...rules.factories import RuleFactory
 from ...schedule.factories import (OneTimeTaskFactory, PeriodicTaskFactory,
                                    UserFactory)
@@ -28,6 +28,21 @@ class OneTimeReportViewSetTestCase(APITestCase):
                 self.task.rules.all()[0].id
             ]
         }
+
+    def test_report_list(self):
+        """Test report list obtaining"""
+        OneTimeReportFactory(task=self.task)
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(resp.data), 1)
+
+    def test_another_user_report_list(self):
+        """Ensure that another user has no reports"""
+        OneTimeReportFactory(task=self.task)
+        self.client.force_authenticate(self.another_user)
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(resp.data), 0)
 
     def test_user_can_submit_report(self):
         """Test user able to submit a report"""
@@ -69,6 +84,21 @@ class PeriodicReportViewSetTestCase(APITestCase):
                 self.task.rules.all()[0].id
             ]
         }
+
+    def test_report_list(self):
+        """Test report list obtaining"""
+        PeriodicReportFactory(task=self.task)
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(resp.data), 1)
+
+    def test_another_user_report_list(self):
+        """Ensure that another user has no reports"""
+        PeriodicReportFactory(task=self.task)
+        self.client.force_authenticate(self.another_user)
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(resp.data), 0)
 
     def test_user_can_submit_report(self):
         """Test user able to submit a report"""
