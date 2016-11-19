@@ -4,5 +4,6 @@ node_modules/
 assets/build/
 static/
 *.pyc
-.coverage*
+.coverage
+.coverage.*
 htmlcov/
