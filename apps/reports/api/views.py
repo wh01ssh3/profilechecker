@@ -3,11 +3,9 @@ from rest_framework import mixins
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import GenericViewSet
 
-from apps.reports.models import PeriodicReport
-from apps.schedule.api.serializers import PeriodicTaskSerializer
 from apps.schedule.models import PeriodicTask
-from .serializers import OneTimeReportSerializer
-from ..models import OneTimeReport
+from .serializers import OneTimeReportSerializer, PeriodicReportSerializer
+from ..models import OneTimeReport, PeriodicReport
 from ...schedule.models import OneTimeTask
 
 
@@ -57,4 +55,4 @@ class PeriodicReportViewSet(mixins.CreateModelMixin,
             raise ValidationError(
                 _('You can\'t create reports of not your tasks'))
 
-    serializer_class = PeriodicTaskSerializer
+    serializer_class = PeriodicReportSerializer
