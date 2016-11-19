@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from apps.reports.models import PeriodicReport
-from ..models import OneTimeReport
+from ..models import OneTimeReport, PeriodicReport
 
 
 class OneTimeReportSerializer(serializers.ModelSerializer):
