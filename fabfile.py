@@ -26,4 +26,4 @@ def coverage():
     """Open test coverage in browser"""
     local('coverage run manage.py test --keepdb --failfast')
     local('coverage html')
-    local('xdg-open htmlcov/index.html & sleep 3')
+    local('xdg-open htmlcov/index.html && sleep 3')
