@@ -6,6 +6,5 @@ factory-boy
 pytz
 tblib
 djangorestframework
-django-rest-swagger
 django-rest-auth
 coverage
