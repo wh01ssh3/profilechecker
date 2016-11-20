@@ -4,6 +4,7 @@
     "title": "Profile Checker API",
     "version": "0.1"
   },
+  "host": "localhost:8000",
   "paths": {
     "/api/auth/login/": {
       "post": {
@@ -11,7 +12,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "login_create",
+        "operationId": "login",
         "parameters": [
           {
             "in": "body",
@@ -55,27 +56,12 @@
         "tags": [
           "auth"
         ],
-        "operationId": "logout_list",
+        "operationId": "logout",
         "parameters": [
         ],
         "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
         "responses": {
           "200": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "summary": "Calls Django logout method and delete the Token object",
-        "tags": [
-          "auth"
-        ],
-        "operationId": "logout_create",
-        "parameters": [
-        ],
-        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
-        "responses": {
-          "201": {
             "description": ""
           }
         }
@@ -87,7 +73,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "password_change_create",
+        "operationId": "changePassword",
         "parameters": [
           {
             "in": "body",
@@ -128,7 +114,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "password_reset_create",
+        "operationId": "resetPassword",
         "parameters": [
           {
             "in": "body",
@@ -164,7 +150,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "password_reset_confirm_create",
+        "operationId": "confirmResetPassword",
         "parameters": [
           {
             "in": "body",
@@ -215,7 +201,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "user_list",
+        "operationId": "getUser",
         "parameters": [
           {
             "required": false,
@@ -237,7 +223,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "user_update",
+        "operationId": "updateUser",
         "parameters": [
           {
             "in": "body",
@@ -279,7 +265,7 @@
         "tags": [
           "auth"
         ],
-        "operationId": "user_partial_update",
+        "operationId": "partialUpdateUser",
         "parameters": [
           {
             "in": "body",
@@ -320,7 +306,7 @@
         "tags": [
           "reports"
         ],
-        "operationId": "one-time-reports_list",
+        "operationId": "getOneTimeReportList",
         "parameters": [
           {
             "required": false,
@@ -342,7 +328,7 @@
         "tags": [
           "reports"
         ],
-        "operationId": "one-time-reports_create",
+        "operationId": "createOneTimeReport",
         "parameters": [
           {
             "in": "body",
@@ -385,7 +371,7 @@
         "tags": [
           "reports"
         ],
-        "operationId": "one-time-reports_read",
+        "operationId": "getOneTimeReport",
         "parameters": [
           {
             "required": true,
@@ -409,7 +395,7 @@
         "tags": [
           "reports"
         ],
-        "operationId": "periodic-reports_list",
+        "operationId": "getPeriodicReportList",
         "parameters": [
           {
             "required": false,
@@ -431,7 +417,7 @@
         "tags": [
           "reports"
         ],
-        "operationId": "periodic-reports_create",
+        "operationId": "createPeriodicReport",
         "parameters": [
           {
             "in": "body",
@@ -474,7 +460,7 @@
         "tags": [
           "reports"
         ],
-        "operationId": "periodic-reports_read",
+        "operationId": "getPeriodicReport",
         "parameters": [
           {
             "required": true,
@@ -498,7 +484,7 @@
         "tags": [
           "rules"
         ],
-        "operationId": "profiles_list",
+        "operationId": "getProfileList",
         "parameters": [
           {
             "required": false,
@@ -522,7 +508,7 @@
         "tags": [
           "rules"
         ],
-        "operationId": "profiles_read",
+        "operationId": "getProfile",
         "parameters": [
           {
             "required": true,
@@ -546,7 +532,7 @@
         "tags": [
           "rules"
         ],
-        "operationId": "rules_list",
+        "operationId": "getRuleList",
         "parameters": [
           {
             "required": false,
@@ -570,7 +556,7 @@
         "tags": [
           "rules"
         ],
-        "operationId": "rules_read",
+        "operationId": "getRule",
         "parameters": [
           {
             "required": true,
@@ -594,7 +580,7 @@
         "tags": [
           "schedule"
         ],
-        "operationId": "one-time-tasks_list",
+        "operationId": "getOneTimeTaskList",
         "parameters": [
           {
             "required": false,
@@ -618,7 +604,7 @@
         "tags": [
           "schedule"
         ],
-        "operationId": "one-time-tasks_read",
+        "operationId": "getOneTimeTask",
         "parameters": [
           {
             "required": true,
@@ -642,7 +628,7 @@
         "tags": [
           "schedule"
         ],
-        "operationId": "periodic-tasks_list",
+        "operationId": "getPeriodicTaskList",
         "parameters": [
           {
             "required": false,
@@ -666,7 +652,7 @@
         "tags": [
           "schedule"
         ],
-        "operationId": "periodic-tasks_read",
+        "operationId": "getPeriodicTask",
         "parameters": [
           {
             "required": true,
@@ -686,7 +672,7 @@
     }
   },
   "securityDefinitions": {
-    "api_key": {
+    "Token": {
       "in": "header",
       "type": "apiKey",
       "name": "Authorization"

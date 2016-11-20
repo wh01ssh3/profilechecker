@@ -8,3 +8,4 @@ tblib
 djangorestframework
 django-rest-auth
 coverage
+django-cors-headers
