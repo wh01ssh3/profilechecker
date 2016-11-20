@@ -6,6 +6,6 @@ router = DefaultRouter()
 router.register('one-time-reports', OneTimeReportViewSet,
                 base_name='one_time_reports')
 router.register('periodic-reports', PeriodicReportViewSet,
-                base_name='one_time_reports')
+                base_name='periodic_reports')
 
 urlpatterns = router.urls
