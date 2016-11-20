@@ -1,0 +1,695 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Profile Checker API",
+    "version": "0.1"
+  },
+  "paths": {
+    "/api/auth/login/": {
+      "post": {
+        "summary": "Check the credentials and return the REST Token",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "login_create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": ""
+                },
+                "password": {
+                  "type": "string",
+                  "description": ""
+                },
+                "email": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "password"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "Check the credentials and return the REST Token\nif the credentials are valid and authenticated.\nCalls Django Auth login method to register User ID\nin Django session framework\n\nAccept the following POST parameters: username, password\nReturn the REST Framework Token Object's key.",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/auth/logout/": {
+      "get": {
+        "summary": "Calls Django logout method and delete the Token object",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "logout_list",
+        "parameters": [
+        ],
+        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "summary": "Calls Django logout method and delete the Token object",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "logout_create",
+        "parameters": [
+        ],
+        "description": "Calls Django logout method and delete the Token object\nassigned to the current User object.\n\nAccepts/Returns nothing.",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/password/change/": {
+      "post": {
+        "summary": "Calls Django Auth SetPasswordForm save method.",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "password_change_create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "new_password1": {
+                  "type": "string",
+                  "description": ""
+                },
+                "new_password2": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "new_password1",
+                "new_password2"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "Calls Django Auth SetPasswordForm save method.\n\nAccepts the following POST parameters: new_password1, new_password2\nReturns the success/fail message.",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/auth/password/reset/": {
+      "post": {
+        "summary": "Calls Django Auth PasswordResetForm save method.",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "password_reset_create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "email"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "Calls Django Auth PasswordResetForm save method.\n\nAccepts the following POST parameters: email\nReturns the success/fail message.",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/auth/password/reset/confirm/": {
+      "post": {
+        "summary": "Password reset e-mail link is confirmed, therefore this resets the user's password.",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "password_reset_confirm_create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "description": ""
+                },
+                "uid": {
+                  "type": "string",
+                  "description": ""
+                },
+                "new_password1": {
+                  "type": "string",
+                  "description": ""
+                },
+                "new_password2": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "new_password1",
+                "new_password2",
+                "uid",
+                "token"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "Password reset e-mail link is confirmed, therefore this resets the user's password.\n\nAccepts the following POST parameters: new_password1, new_password2\nAccepts the following Django URL arguments: token, uid\nReturns the success/fail message.",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/auth/user/": {
+      "get": {
+        "summary": "Reads and updates UserModel fields",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "user_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.\n\nDefault accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "summary": "Reads and updates UserModel fields",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "user_update",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                },
+                "last_name": {
+                  "type": "string",
+                  "description": ""
+                },
+                "first_name": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "username"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.\n\nDefault accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      },
+      "patch": {
+        "summary": "Reads and updates UserModel fields",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "user_partial_update",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+                },
+                "last_name": {
+                  "type": "string",
+                  "description": ""
+                },
+                "first_name": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "type": "object"
+            }
+          }
+        ],
+        "description": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.\n\nDefault accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/reports/one-time-reports/": {
+      "get": {
+        "summary": "ViewSet for ``OneTimeReport``",
+        "tags": [
+          "reports"
+        ],
+        "operationId": "one-time-reports_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``OneTimeReport``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "summary": "ViewSet for ``OneTimeReport``",
+        "tags": [
+          "reports"
+        ],
+        "operationId": "one-time-reports_create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "passed_rules": {
+                  "type": "array",
+                  "description": "",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "task": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "task"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "ViewSet for ``OneTimeReport``",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/reports/one-time-reports/{id}/": {
+      "get": {
+        "summary": "ViewSet for ``OneTimeReport``",
+        "tags": [
+          "reports"
+        ],
+        "operationId": "one-time-reports_read",
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``OneTimeReport``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/reports/periodic-reports/": {
+      "get": {
+        "summary": "ViewSet for ``PeriodicReport``",
+        "tags": [
+          "reports"
+        ],
+        "operationId": "periodic-reports_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``PeriodicReport``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "summary": "ViewSet for ``PeriodicReport``",
+        "tags": [
+          "reports"
+        ],
+        "operationId": "periodic-reports_create",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "properties": {
+                "passed_rules": {
+                  "type": "array",
+                  "description": "",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "task": {
+                  "type": "string",
+                  "description": ""
+                }
+              },
+              "required": [
+                "task"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "description": "ViewSet for ``PeriodicReport``",
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/api/reports/periodic-reports/{id}/": {
+      "get": {
+        "summary": "ViewSet for ``PeriodicReport``",
+        "tags": [
+          "reports"
+        ],
+        "operationId": "periodic-reports_read",
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``PeriodicReport``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/rules/profiles/": {
+      "get": {
+        "summary": "ViewSet for ``Profile``",
+        "tags": [
+          "rules"
+        ],
+        "operationId": "profiles_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``Profile``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/rules/profiles/{id}/": {
+      "get": {
+        "summary": "ViewSet for ``Profile``",
+        "tags": [
+          "rules"
+        ],
+        "operationId": "profiles_read",
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``Profile``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/rules/rules/": {
+      "get": {
+        "summary": "ViewSet for ``Rule``",
+        "tags": [
+          "rules"
+        ],
+        "operationId": "rules_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``Rule``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/rules/rules/{id}/": {
+      "get": {
+        "summary": "ViewSet for ``Rule``",
+        "tags": [
+          "rules"
+        ],
+        "operationId": "rules_read",
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``Rule``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/schedule/one-time-tasks/": {
+      "get": {
+        "summary": "ViewSet for ``OneTimeTask``",
+        "tags": [
+          "schedule"
+        ],
+        "operationId": "one-time-tasks_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``OneTimeTask``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/schedule/one-time-tasks/{id}/": {
+      "get": {
+        "summary": "ViewSet for ``OneTimeTask``",
+        "tags": [
+          "schedule"
+        ],
+        "operationId": "one-time-tasks_read",
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``OneTimeTask``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/schedule/periodic-tasks/": {
+      "get": {
+        "summary": "ViewSet for ``PeriodicTask``",
+        "tags": [
+          "schedule"
+        ],
+        "operationId": "periodic-tasks_list",
+        "parameters": [
+          {
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "name": "page",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``PeriodicTask``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/schedule/periodic-tasks/{id}/": {
+      "get": {
+        "summary": "ViewSet for ``PeriodicTask``",
+        "tags": [
+          "schedule"
+        ],
+        "operationId": "periodic-tasks_read",
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "name": "id",
+            "description": ""
+          }
+        ],
+        "description": "ViewSet for ``PeriodicTask``",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "in": "header",
+      "type": "apiKey",
+      "name": "Authorization"
+    }
+  }
+}
