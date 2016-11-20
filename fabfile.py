@@ -11,6 +11,11 @@ def startdb():
     local('docker-compose up postgres')
 
 
+def startswagger():
+    """Up swagger-ui and swagger-static-server containers"""
+    local('docker-compose up swagger-ui swagger-static-server')
+
+
 def compiledeps(env='local'):
     """Compile *.in files into requirements.txt"""
     local('pip-compile --output-file requirements/{env}.txt '
