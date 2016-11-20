@@ -26,12 +26,14 @@ class OneTimeReportViewSet(mixins.CreateModelMixin,
         task. Also user shouldn't be able to create the second report for task,
         which already has report
         """
-        task = OneTimeTask.objects.get(id=serializer.data['task'])
+        task = OneTimeTask.objects.get(id=serializer.validated_data['task'].id)
         if task.user != self.request.user:
             raise ValidationError(
                 _('You can\'t create reports of not your tasks'))
         if task.reports.all().exists():
             raise ValidationError(_('This task already have report'))
+
+        serializer.save(total_rules=task.get_all_rules())
 
     serializer_class = OneTimeReportSerializer
 
@@ -49,9 +51,13 @@ class PeriodicReportViewSet(mixins.CreateModelMixin,
 
     def perform_create(self, serializer):
         """Create report"""
-        task = PeriodicTask.objects.get(id=serializer.data['task'])
+        task = PeriodicTask.objects.get(
+            id=serializer.validated_data['task'].id
+        )
         if task.user != self.request.user:
             raise ValidationError(
                 _('You can\'t create reports of not your tasks'))
+
+        serializer.save(total_rules=task.get_all_rules())
 
     serializer_class = PeriodicReportSerializer

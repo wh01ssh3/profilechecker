@@ -8,7 +8,7 @@ class OneTimeReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OneTimeReport
-        fields = '__all__'
+        exclude = ('total_rules',)
 
 
 class PeriodicReportSerializer(serializers.ModelSerializer):
@@ -16,4 +16,4 @@ class PeriodicReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PeriodicReport
-        fields = '__all__'
+        exclude = ('total_rules',)
