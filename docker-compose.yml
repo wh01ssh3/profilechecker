@@ -19,3 +19,18 @@ services:
     - "8000:8000"
     volumes:
     - .:/home/app/
+
+  swagger-ui:
+    image: sjeandeaux/docker-swagger-ui
+    ports:
+    - "8888:8888"
+    environment:
+    - API_URL=http://localhost:8080/swagger.json
+
+  swagger-static-server:
+    build: ./docker/swagger-static-server
+    ports:
+    - "8080:80"
+    volumes:
+    - ./swagger/:/usr/share/nginx/html
+    - ./docker/swagger-static-server/default.conf:/etc/ngnix/conf.d/default.conf
