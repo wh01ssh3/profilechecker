@@ -1,6 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
 from rest_framework import mixins
-from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets import GenericViewSet
 
 from .serializers import OneTimeReportSerializer, PeriodicReportSerializer
@@ -27,11 +25,6 @@ class OneTimeReportViewSet(mixins.CreateModelMixin,
         which already has report
         """
         task = OneTimeTask.objects.get(id=serializer.validated_data['task'].id)
-        if task.user != self.request.user:
-            raise ValidationError(
-                _('You can\'t create reports of not your tasks'))
-        if task.reports.all().exists():
-            raise ValidationError(_('This task already have report'))
 
         serializer.save(total_rules=task.get_all_rules())
 
@@ -54,9 +47,6 @@ class PeriodicReportViewSet(mixins.CreateModelMixin,
         task = PeriodicTask.objects.get(
             id=serializer.validated_data['task'].id
         )
-        if task.user != self.request.user:
-            raise ValidationError(
-                _('You can\'t create reports of not your tasks'))
 
         serializer.save(total_rules=task.get_all_rules())
 

@@ -29,7 +29,7 @@ class OneTimeReport(Report):
         blank=True,
         related_name='one_time_reports_where_total'
     )
-    task = models.ForeignKey('schedule.OneTimeTask', related_name='reports')
+    task = models.OneToOneField('schedule.OneTimeTask', related_name='reports')
 
 
 class PeriodicReport(Report):
